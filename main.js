@@ -46,7 +46,7 @@ player.onCollide("tree", () => { // onCollide() is provided by area()
 loop(1, () => { // the first argument in loop is time is seconds
   // add tree
   add([
-    rect(48, 64),
+    rect(48, rand(24, 64)),
     area(), //collision detection
     outline(4),
     pos(width(), height() - 48),
