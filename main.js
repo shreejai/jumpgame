@@ -34,17 +34,7 @@ onKeyPress("space", () => {
   }  
 })
 
-// add tree
-add([
-  rect(48, 64),
-  area(), //collision detection
-  outline(4),
-  pos(width(), height() - 48),
-  anchor("botleft"), // defines origin point of position
-  color(255, 180, 255),
-  move(LEFT, 240), // makes it move infinitely at 240 pixels/second
-  "tree" // add a tree tag, this helps to check for collision of player with an object with the tag "tree"
-])
+
 
 // check if player collides with an object with tag -> "tree"
 player.onCollide("tree", () => { // onCollide() is provided by area()
@@ -53,3 +43,16 @@ player.onCollide("tree", () => { // onCollide() is provided by area()
   burp();
 })
 
+loop(1, () => { // the first argument in loop is time is seconds
+  // add tree
+  add([
+    rect(48, 64),
+    area(), //collision detection
+    outline(4),
+    pos(width(), height() - 48),
+    anchor("botleft"), // defines origin point of position
+    color(255, 180, 255),
+    move(LEFT, 240), // makes it move infinitely at 240 pixels/second
+    "tree" // add a tree tag, this helps to check for collision of player with an object with the tag "tree"
+  ])  
+})
