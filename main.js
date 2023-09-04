@@ -1,27 +1,20 @@
 import kaboom from "./libs/kaboom.mjs";
 
-kaboom({
-  width: 320,
-  height: 2000,
-  font: "sans-serif",
-  canvas: document.querySelector("#mycanvas"),
-  background: [ 0, 0, 255, ],
-})
+//Initialize kaboom
+kaboom()
 
 // define gravity
-setGravity(2400)
+//setGravity(2400)
 
-// load a default sprite
+// load a sprite 'bean' from an image
 loadSprite("bean", "assets/bean.png")
-//loadSprite("bean", "sprites/bean.png")
 
-
-// add character to screen, from a list of components
+// add sprite to screen
 const player = add([
     sprite("bean"),  // renders as a sprite
-    pos(120, 80),    // position in world
-    area(),          // has a collider
-    body(),          // responds to physics and gravity
+    pos(80, 40),    // position in world 
+    area(), // gives it a collider area, so we can check for collisions with other characters
+    body(), // gives it a physical body, making it fall due to gravity and ability to jump
 ])
 
 // jump when player presses "space" key
