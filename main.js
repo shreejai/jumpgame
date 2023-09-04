@@ -4,7 +4,17 @@ import kaboom from "./libs/kaboom.mjs";
 kaboom()
 
 // define gravity
-//setGravity(2400)
+setGravity(1600)
+
+//add a platform to avoid characters falling into oblivion
+add([
+  rect(width(), 48), // renders a rectangle. It accepts 2 arguments, the width and height, which we give it the game width
+  pos(0, height() - 50),
+  area(), // enables collision detection
+  body({isStatic: true}),
+  outline(4),
+  color(127, 200, 255)
+])
 
 // load a sprite 'bean' from an image
 loadSprite("bean", "assets/bean.png")
@@ -19,6 +29,7 @@ const player = add([
 
 // jump when player presses "space" key
 onKeyPress("space", () => {
-    // .jump() is provided by the body() component
-    player.jump()
+  if(player.isGrounded()){ // isGrounded() is another function provided by body() component which checks if currently landed on a platform.
+    player.jump() // .jump() is provided by the body() component
+  }  
 })
