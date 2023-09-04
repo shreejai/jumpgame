@@ -11,7 +11,7 @@ loadSprite("bean", "assets/bean.png")
 
 scene("game", () => {
 
-  let collisionCount = 0;
+  let collisionCount = 4;
 
   // define gravity
   setGravity(1600);
@@ -62,27 +62,43 @@ scene("game", () => {
 
   // check if player collides with an object with tag -> "tree"
   player.onCollide("tree", () => { // onCollide() is provided by area()
-    collisionCount++;
+    collisionCount--;
+    livesLeft.text = collisionCount;
     addKaboom(player.pos);
     shake();
     burp();
-    //if(collisionCount > 3){ // 3 Lives
+    if(collisionCount < 2){ // 3 Lives
+      player.opacity = 0.5;
+    } 
+    if(collisionCount < 1){ // 3 Lives
       go("lose", score); // go to lose scene here
-    //} 
+    } 
   })
+
+  add([
+    sprite("bean"),
+    pos(30, 34),
+    scale(0.5)
+  ])
+
+  const livesLeft = add([
+    text(collisionCount),
+    anchor("topleft"),
+    pos(80, 30)
+  ])
 
   // keep track of score
   let score = 0;
 
   const scoreLabel = add([
-    text(score),
-    pos(24, 24)
+    text("Score"+score),
+    pos(30, 80)
   ])
 
   // increment score every frame
   onUpdate(() => {
     score++;
-    scoreLabel.text = score;
+    scoreLabel.text = "Score: "+score;
   });
 
 })
@@ -101,6 +117,12 @@ scene("lose", (score) => {
     text("Game Over!"),
     text("Score: "+score),
     pos(center()),
+    anchor("center")
+  ])
+
+  add([
+    text("Game Over!"),
+    pos(width()/2, height()/ 2 - 160),
     anchor("center")
   ])
 
