@@ -4,7 +4,9 @@ const FLOOR_HEIGHT = 48;
 const JUMP_FORCE = 800;
 
 //Initialize kaboom
-kaboom()
+kaboom({
+  background: [51, 151, 255]
+})
 
 // load a sprite 'bean' from an image
 loadSprite("bean", "assets/bean.png")
@@ -31,7 +33,7 @@ scene("game", () => {
     area(), // enables collision detection
     body({isStatic: true}),
     outline(4),
-    color(127, 200, 255)
+    color(127, 200, 255),
   ])
 
   // jump when player presses "space" key
