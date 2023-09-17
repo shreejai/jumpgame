@@ -5,8 +5,7 @@ const JUMP_FORCE = 800;
 
 //Initialize kaboom
 kaboom({
-  //background: [51, 151, 255]
-  background: [0, 0, 255]
+  background: [51, 151, 255]
 })
 
 // load a sprite 'bean' from an image
